@@ -1,46 +1,74 @@
 package com.svnt.workshop.demo.ComedySpecialEvent;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @SpringBootTest
 public class ComedySpecialTest {
 
-        // @InjectMocks is used to put the mocked dependencies into the class that you plan to run unit tests on
-
+    // @InjectMocks is used to put the mocked dependencies into the class that you plan to run unit tests on
     @InjectMocks
     ComedySpecial comedySpecial;
 
     @Mock
     JokeService jokeService;
 
-    private Celebrity celebrity;
+    private Joke badJoke;
+    private Joke badProgrammingJoke;
 
     @BeforeEach
     public void setUp() {
-        celebrity = new Celebrity("Keanu Reeves", 50);
+        badJoke = new Joke("What do you call a singing laptop?", "A Dell");
+        badProgrammingJoke = new Joke("How many software developers does it take to change a lightbulb?",
+                "None, that's a software problem");
     }
 
-
     @Test
-    public void testSetName() {
-        assertEquals("Keanu Reeves", celebrity.getName());
-    }
-
-
-    @Test
-    public void testJoke() {
+    public void testGetRandomJoke() {
 
         /**
-         * Insert unit test code into here
+         * Insert mocking here
          */
 
-         comedySpecial.joke();
+        ResponseEntity<String> responseEntity = comedySpecial.getJoke();
+
+        assertTrue(responseEntity.getBody().contains(badJoke.getPunchline()));
     }
-    
+
+    @Test
+    public void testGetProgrammingJoke() {
+
+        /**
+         * Insert unit test here
+         */
+    }
+
+
+    @Test
+    public void testGetJokeException() {
+
+        /**
+         * Insert mocking here
+         */
+
+        ResponseEntity<String> responseEntity = comedySpecial.getJoke();
+
+        assertTrue(responseEntity.getStatusCode().equals(HttpStatus.NOT_FOUND));
+    }
+
+
+    @Test
+    public void testGetProgrammingJokeException() {
+
+        /**
+         * Insert unit test here
+         */
+    }
 }
