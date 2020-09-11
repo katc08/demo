@@ -29,7 +29,7 @@ public class ComedySpecialTest {
     public void setUp() {
         badJoke = new Joke("What do you call a singing laptop?", "A Dell");
         badProgrammingJoke = new Joke("How many software developers does it take to change a lightbulb?",
-                "None, that's a software problem");
+                "None, that's a hardware problem");
     }
 
     @Test
