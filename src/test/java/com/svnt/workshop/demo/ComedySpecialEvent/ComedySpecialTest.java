@@ -1,11 +1,13 @@
 package com.svnt.workshop.demo.ComedySpecialEvent;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,5 +72,24 @@ public class ComedySpecialTest {
         /**
          * Insert unit test here
          */
+    }
+
+    @Test
+    public void testTossOutJoke() {
+
+        /**
+         * Insert unit test here
+         */
+
+         verify(jokeService).addToJokeBin(Mockito.any(Joke.class));
+    }
+
+    @Test
+    public void testTossOutJokeException() {
+
+        /**
+         * Insert unit test here
+         */
+
     }
 }

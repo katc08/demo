@@ -65,4 +65,19 @@ public class Joke {
         this.punchline = punchline;
     }
 
+    @Override
+    public boolean equals(Object object) {
+
+        if (object == this) {
+            return true;
+        }
+        else if (!(object instanceof Joke)) {
+            return false;
+        } else {
+            Joke otherJoke = (Joke) object;
+            return this.id == otherJoke.getId() && this.type.equals(otherJoke.getType()) && this.setup.equals(otherJoke.getSetUp()) && this.punchline.equals(otherJoke.getPunchline());
+        }
+
+    }
+
 }

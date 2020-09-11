@@ -1,5 +1,8 @@
 package com.svnt.workshop.demo.ComedySpecialEvent;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,16 +22,17 @@ public class JokeService {
     
     private ObjectMapper objectMapper;
     private RestTemplate restTemplate;
+    private Set<String> jokeBin;
 
     @Autowired
     public JokeService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
         this.restTemplate = new RestTemplate();
+        jokeBin = new HashSet<>();
     }
 
     /**
      * Calls the joke api to obtain a random joke
-     * 
      * @return the joke from the api
      * @throws JsonProcessingException
      * @throws JsonMappingException
@@ -63,6 +67,15 @@ public class JokeService {
         }
 
         return joke;
+    }
+
+
+    /**
+     * Adds an joke to the joke bin
+     * @param badJoke - the joke that people didn't laugh at
+     */
+    public void addToJokeBin(Joke badJoke) {
+        jokeBin.add(badJoke.getSetUp() + " " + badJoke.getPunchline());
     }
     
 }
