@@ -72,7 +72,7 @@ public class ComedySpecial {
     public boolean tossOutJoke() {
         Joke badJoke;
         try {
-            badJoke = jokeBook.getJoke("programming", 10);
+            badJoke = jokeBook.getJoke();
         } catch (JsonProcessingException ex) {
             return false;
         }
