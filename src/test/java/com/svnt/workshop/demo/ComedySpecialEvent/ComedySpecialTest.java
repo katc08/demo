@@ -33,7 +33,7 @@ public class ComedySpecialTest {
     }
 
     @Test
-    public void testGetRandomJoke() {
+    public void testGetJoke() {
 
         /**
          * Insert mocking here
